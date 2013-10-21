@@ -2,12 +2,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Homework 5</title>
-        <script>
-            window.onload(function () {
-                alert("here");
-            });
-    </script>
+    <link href="css/styles.css" rel="stylesheet" />
+<script>
+    function displayPrompt() {
+        var input = prompt("Please enter a number between 5 and 20:", "");
+        checkInput(input);
+    }
+
+    function checkInput(input) {
+        if (input >= 5 && input <= 20) {
+            drawTable(input);
+        } else {
+            var errorMessage = "Input must be between 5 and 20. Please refresh your page and try again";
+            document.getElementById('error').innerHTML = errorMessage;
+        }
+    }
+
+    function drawTable(number) {
+        document.write('<table border="1" cellspacing="0" cellpadding="5">')
+        document.write('<caption>Times Table - ' + number + 'x' + number + '</caption>')
+        document.write('<th></th>')
+        for (x = 1; x <= number; x++) {
+            document.write('<th style="background-color:yellow;">' + x + '</th>')
+        }
+
+        for (i = 1; i <= number; i++) {
+            document.write('<tr>')
+            document.write('<th style="background-color:yellow;">' + i + '</th>')
+            for (j = 1; j <= number; j++) {
+                if (i / j == 1) {
+                    document.write('<td style="background-color:yellow">' + (i * j) + '</td>')
+                } else {
+                    document.write('<td>' + (i * j) + '</td>')
+                }
+            }
+            document.write('</tr>')
+        }
+
+        document.write('</table>')
+    }
+
+</script>
 </head>
-<body>
+<body onload="displayPrompt()">
+    <div class="errorMessage" id="error"></div>
+    <table></table>
 </body>
 </html>
